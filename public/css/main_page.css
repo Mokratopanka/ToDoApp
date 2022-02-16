@@ -1,0 +1,42 @@
+* {
+    -webkit-font-smoothing: antialiased;
+}
+.add{
+    color: White;
+    font-size: 80px;
+    font-style: oblique;
+}
+.main_page{
+    position:absolute; 
+    width:100%; 
+    top:50%; 
+    left:0; 
+    text-align:center;
+}
+.main_p{
+    font-size: 20px;
+    color: white;
+}
+ul{
+    text-decoration: none;
+}
+li{
+    display:inline-block;
+    vertical-align: top;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+.btn_reg{
+    border: 1px;
+    padding: 5px;
+    background-color: blue;
+    color:white;
+    border-radius: 9px;
+}
+.btn_log{
+    border: 1px;
+    padding: 5px;
+    background-color: blue;
+    color:white;
+    border-radius: 9px;
+}
