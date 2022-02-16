@@ -77,7 +77,18 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $statuses = [
+            [
+                'label' => 'Todo',
+                'value' => 'Todo',
+            ],
+            [
+                'label' => 'Done',
+                'value' => 'Done',
+            ]
+            ];
+        return view('edit', compact('statuses', 'task'));
     }
 
     /**
@@ -89,7 +100,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->status = $request->status;
+        $task->save();
+        return redirect()->route('/tasks');
     }
 
     /**
@@ -100,6 +120,8 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->route('/tasks');
     }
 }

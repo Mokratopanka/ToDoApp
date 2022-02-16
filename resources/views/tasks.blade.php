@@ -15,14 +15,22 @@
   
         @foreach ($tasks as $task) 
         <div class="card bg-secondary">
-            <div class="card-header">
-                {{$task->title}}
+            <h5 class="card-header">
+                @if ($task->status === "Todo")
+                    {{$task->title}}
+                @else
+                    <del>{{ $task->title}}</del>
+                @endif
                 <span class="badge bg-info text-dark">{{$task->created_at->diffForHumans()}}</span>
-            </div>
+            </h5>
             <div class="card-body">
                 <div class="card-text">
                             <div class="float-start">
-                            {{$task->description}}
+                            @if ($task->status === "Todo")
+                                {{$task->description}}
+                            @else
+                                <del>{{ $task->description}}</del>
+                            @endif
                             <br>
                             @if ($task->status === "Todo")
                             <span class="badge bg-warning text-white">Todo</span>
@@ -35,9 +43,14 @@
                                 <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-success">
                                     Edit
                                 </a>
-                                <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-danger">
-                                    Delete
-                                </a>
+                                <form action="{{ route('tasks.destroy', $task->id)}}" style="display: inline;" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                                
                             </div>
                     <div class="clearfix"></div>
                 </div>
