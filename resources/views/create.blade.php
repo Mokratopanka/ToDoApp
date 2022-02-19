@@ -1,5 +1,7 @@
 @extends('index')
 
+@section('title', 'CreateTask')
+
 @section('main-content')
 
     <div class="container p-5">
